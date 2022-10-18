@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Scrollable Fingerprintd Test</title>
+<style>
+body{
+    padding: 2rem 4rem;
+}
+h1{
+    text-align: center;
+}
+h2, h3{
+    font-family: Arial, Helvetica, sans-serif;
+}
+#scrllog{
+    position: fixed;
+    height: 6px;
+    top: 2px;
+    z-index: 20;
+    font-size: x-large;
+    color: red;
+}
+#scrollableHeightLog{
+    background-color: yellow;
+}
+</style>
+</head>
+<body>
+    <div id="scrllog">0</div>
+
+    <h1>Scroll To The Bottom⬇</h1>
+    <h2>The Total Scrollable height is <span id="scrollableHeightLog">0</span> px</h2>
+    <h3><strong>NB:</strong> You will have to refresh the page each time you want get the scroll interval differences. <br> This is for you to have more accurate results</h3>
+   <div>
+       Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugiat consectetur mollitia debitis dolor quisquam ad fuga culpa provident veritatis sit ea obcaecati unde veniam itaque, ab neque impedit ratione.
+   </div>
+   <br>
+   <br>
+   <br>
+   <br>
+   <div>
+       Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugiat consectetur mollitia debitis dolor quisquam ad fuga culpa provident veritatis sit ea obcaecati unde veniam itaque, ab neque impedit ratione.
+   </div>
+   <br>
+   <br>
+   <br>
+   <br>
+   <div>
+       Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugiat consectetur mollitia debitis dolor quisquam ad fuga culpa provident veritatis sit ea obcaecati unde veniam itaque, ab neque impedit ratione.
+   </div>
+   <br>
+   <br>
+   <br>
+   <br>
+   <div>
+       Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugiat consectetur mollitia debitis dolor quisquam ad fuga culpa provident veritatis sit ea obcaecati unde veniam itaque, ab neque impedit ratione.
+   </div>
+   <br>
+   <br>
+   <br>
+   <br>
+   <div>
+       Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugiat consectetur mollitia debitis dolor quisquam ad fuga culpa provident veritatis sit ea obcaecati unde veniam itaque, ab neque impedit ratione.
+   </div>
+   <br>
+   <br>
+   <br>
+   <br>
+   <div>
+       Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugiat consectetur mollitia debitis dolor quisquam ad fuga culpa provident veritatis sit ea obcaecati unde veniam itaque, ab neque impedit ratione.
+   </div>
+   <br>
+   <br>
+   <br>
+   <br>
+   <div>
+       Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugiat consectetur mollitia debitis dolor quisquam ad fuga culpa provident veritatis sit ea obcaecati unde veniam itaque, ab neque impedit ratione.
+   </div>
+   <br>
+    <script>
+        //HTML element that displays how far you've scrolled through the document
+        let scrlLog = document.getElementById('scrllog')
+
+        //Stores all the scroll breakpoints
+        let scrlIntervals = [];
+
+        //The total scrollable height of the document
+        const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+        
+        //Reference to an html element that displays the document's height
+        let scrollableHeightLog = document.getElementById('scrollableHeightLog')
+        scrollableHeightLog.innerHTML = scrollableHeight;
+        
+        window.addEventListener('scroll', ()=>{
+            let scrolled = window.scrollY;
+            //Stores the difference between the scroll intervals
+            let scrlIntervalDiff = [];
+            scrollableHeightLog.innerHTML = scrollableHeight;
+            scrlLog.innerHTML = scrolled
+
+            scrlIntervals.push(scrolled)
+
+            if(Math.ceil(scrolled) === scrollableHeight || Math.floor(scrolled) === scrollableHeight){
+                for(let i=0; i < scrlIntervals.length; i++ ){
+                    if(i<scrlIntervals.length-1){
+                        const j = i+1;
+                        let diff = scrlIntervals[j] - scrlIntervals[i]
+                        scrlIntervalDiff.push(Math.ceil(diff))
+                    }
+                }
+                alert("You have reached the bottom, the scroll interval differences are\n" + scrlIntervalDiff)
+            } 
+        })
+    </script>
+<body>
+</html>
